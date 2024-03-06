@@ -1,0 +1,22 @@
+on: [push]
+
+jobs:
+  sigma_download_script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2   
+
+
+      - name: Download iac scanner
+        run: |
+          curl -k -o sigma ${{ secrets.SIGMA_DOWNLOAD_PATH }}
+          chmod +x sigma
+
+      - name: SIGMA analysis
+        run: ./sigma analyze --format github .      
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: sigma-results.json
