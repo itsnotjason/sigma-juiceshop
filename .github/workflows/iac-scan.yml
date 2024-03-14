@@ -8,10 +8,8 @@ jobs:
         uses: actions/checkout@v2   
 
 
-      - name: Download iac scanner
-        run: |
-          curl -k -o sigma ${{ secrets.SIGMA_DOWNLOAD_PATH }}
-          chmod +x sigma
+      - name: Download SIGMA
+        run: curl -k -L https://sig-repo.synopsys.com/artifactory/sigma-release-trial/2024.3.0/sigma-linux_x86_64   
 
       - name: SIGMA analysis
         run: ./sigma analyze --format github .      
