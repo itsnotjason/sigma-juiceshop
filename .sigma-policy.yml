@@ -1,0 +1,15 @@
+version: 1
+policies:
+  - id: POLICY_CHECKER:plaintext-token
+    when:
+      checkers:
+        - weak_password_policy
+        - weak_password_hash
+        - hardcoded_secret
+        - container_storing_secret_in_environment_variable
+        - access_to_secret
+    result:
+      exit-code: 1
+      message: >
+        POLICY_CHECKER:plaintext-token / 
+        A token or password was identified in plaintext. Please use secret environment variables to secure.
