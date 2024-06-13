@@ -10,7 +10,7 @@ jobs:
 
       - name: Download iac scanner
         run: |
-          curl -k -L https://sig-repo.synopsys.com/artifactory/sigma-release-trial/2024.6.0/sigma-linux_x86_64
+          curl -k -o sigma https://sig-repo.synopsys.com/artifactory/sigma-release-trial/2024.6.0/sigma-linux_x86_64
           chmod +x sigma
 
       - name: SIGMA analysis
